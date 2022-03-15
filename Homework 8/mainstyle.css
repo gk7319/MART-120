@@ -1,0 +1,17 @@
+span{
+    font-family: monospace;
+}
+
+span.pinkcolor {
+    color: palevioletred;
+}
+
+#specificColor{
+    color: black;
+    font-family: cursive;
+}
+
+span.photo{
+    background-image: image("storybackground");
+}
+
