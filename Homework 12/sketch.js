@@ -1,9 +1,9 @@
-var x = 200;
+var x = 300;
 var y = 200;
 var diameter = 50;
 var mousex = 0;
-var mousey = 0;
-var speed = 20
+var mousey = 300;
+var speed = 20;
 
 function setup() 
 {
@@ -13,8 +13,10 @@ function setup()
 function draw() 
 {
     background(239, 222, 231);
-    fill(560);
+    fill(0);
     circle(x, y, diameter);
+    rect(700,300,100,50);
+    rect(700,200,100,50);
 
     if (x >= 300) 
     {
@@ -35,12 +37,19 @@ function draw()
     {
         diameter = 25;
     }
+    fill(255);
+    //this is my player
     circle(mousex, mousey, 30);
 
-    if (circlex = 600) //help
+    if (mousex > 800 && mousey > 250)
+    
     {
-        text('You Win!', 400, 300);
+        fill(0);
+        textSize(25);
+        text("You Win!", width/2-50, height/2-50);
     }
+   console.log(mousex); 
+   console.log(mousey);
 }
 
 function keyPressed() 
