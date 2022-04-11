@@ -25,7 +25,7 @@ function draw()
 
     if (y >= 300) 
     {
-        y = 50;
+            y = 50;
     }
 
     if (diameter < 200) 
