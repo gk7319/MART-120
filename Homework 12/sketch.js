@@ -1,9 +1,14 @@
-var x = 300;
-var y = 200;
+var x = 400;
+var y = 300;
 var diameter = 50;
 var mousex = 0;
 var mousey = 300;
 var speed = 20;
+var movement = 1;
+var a = 400;
+var b = 500;
+var diameter1 = 300;
+
 
 function setup() 
 {
@@ -17,6 +22,13 @@ function draw()
     circle(x, y, diameter);
     rect(700,300,100,50);
     rect(700,200,100,50);
+    fill(130);
+    circle(a, b, diameter1);
+    if (a >= 700 || a <= 100)
+    {
+      movement*=-1;  
+    }
+    a += movement;
 
     if (x >= 300) 
     {
@@ -70,4 +82,9 @@ function keyPressed()
     {
         mousey += speed;
     }   
+}
+function mouseClicked()
+{
+    fill(200);
+    circle(300, 200, 100); 
 }
