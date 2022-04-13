@@ -1,4 +1,4 @@
-var x = 400;
+var x = 500;
 var y = 300;
 var diameter = 50;
 var mousex = 0;
@@ -8,20 +8,29 @@ var movement = 1;
 var a = 400;
 var b = 500;
 var diameter1 = 300;
+var dotx;
+var doty;
 
 
 function setup() 
 {
     createCanvas(800, 600);
 }
-
+function mouseClicked()
+{
+    fill(200);
+    dotx = mouseX //call new variable since circle is under draw
+    doty = mouseY
+    console.log("hi" + mouseY)
+}
 function draw() 
 {
-    background(239, 222, 231);
+    background(239, 222, 231); // this mf wipes out everything because it's being called all the time
     fill(0);
     circle(x, y, diameter);
     rect(700,300,100,50);
     rect(700,200,100,50);
+    circle(dotx, doty, 100); 
     fill(130);
     circle(a, b, diameter1);
     if (a >= 700 || a <= 100)
@@ -30,7 +39,7 @@ function draw()
     }
     a += movement;
 
-    if (x >= 300) 
+   /* if (x >= 300) 
     {
         x = 50;
     }
@@ -38,7 +47,7 @@ function draw()
     if (y >= 300) 
     {
             y = 50;
-    }
+    }*/
 
     if (diameter < 200) 
     {
@@ -60,8 +69,8 @@ function draw()
         textSize(25);
         text("You Win!", width/2-50, height/2-50);
     }
-   console.log(mousex); 
-   console.log(mousey);
+    //console.log(mousex); 
+    // console.log(mousey);
 }
 
 function keyPressed() 
@@ -83,8 +92,4 @@ function keyPressed()
         mousey += speed;
     }   
 }
-function mouseClicked()
-{
-    fill(200);
-    circle(300, 200, 100); 
-}
+
