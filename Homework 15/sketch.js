@@ -1,116 +1,223 @@
-var x = 200;
-var y = 800;
+// lavender circle
+var x = 500;
+var y = 300;
 var diameter = 50;
-var mousex = 0;
-var mousey = 0;
-var s = 83;
-var w = 87;
-var a = 65;
-var d = 68;
 
-var myXs = []; // create an array for the x coordinate
-var myYs = []; // create an array for the y coordinate
-var myDiameters = []; // create array for the diameter of circles
+
+
+// this is my player
+var mousex = 0;
+var mousey = 300;
+
+// blue  moving circle
+var speed = 20;
+var movement = 1;
+var a = 400;
+var b = 500;
+var diameter1 = 300;
+
+// mouse clicked circle 
+var dotx;
+var doty;
+
+//declaring arrays
+var myXs = [];
+var myYs = [];
+var myDiameters = [];
+
 
 function setup() 
 {
     createCanvas(800, 600);
-    // create a for loop here to create the circles
-    for(var i = 0; i < 2; i++)
-        {
-            // get all the random numbers to create a circles
-            myXs[i] = getRandomNumber(800);
-            myYs[i] = getRandomNumber(600);
-            myDiameters[i] = getRandomNumber(100);
-        }
+    drawCharacter(mousex, mousey, 30);
+
+    // creating arrays
+    var x = 50;
+    var y = 50;
+    var diameter = 25;
+    for(var i = 0; i < 5; i++)
+    {
+        myXs[i] = getRandomNumber(800);
+        myYs[i] = getRandomNumber(600);
+        myDiameters[i] = getRandomNumber(200);
+        x += 50;
+        y += 50;
+        diameter += 25;
+    }
 }
 
 function draw() 
-    {
-      background(250,220,230);
-      
-      fill(255);
-      circle(x, y, diameter);
-
-      // call the function created
-      controlCircle();
-
-      ellipse(mousex, mousey, 15, 50);
-
-      for(var i = 0; i < myXs.length; i++)
-      {
-        // concentric circle randomly using arrays
-        ConcentricCircle(myXs[i], myYs[i], myDiameters[i], myDiameters[i]/2, 50, 120, 120, 120, 50, 120);
-      }
-   }
-
-    /* This function controls all the variables of the circle */
-function controlCircle()
 {
-    if (x >= 300) 
+    // this wipes out everything because it's being called all the time
+    background(239, 222, 231); 
+
+    //values to arrays
+    for(var i = 0; i < myXs.length; i++)
+        {
+            circle(myXs[i],myYs[i],myDiameters[i]/2,50,120,120,50,120);
+        }
+
+    // create player 
+    drawCharacter ();
+
+    // boarders
+    createBoarder (10);
+
+    // gates of success 
+    gates ();
+
+    // enemy movement 
+    if (a >= 700 || a <= 100)
+    {
+      movement*=-1;  
+    }
+    a += movement;
+ 
+   /* if (x >= 300) 
     {
         x = 50;
     }
-      
+ 
     if (y >= 300) 
     {
-        y = 50;
-    }
-
-    if (keyIsDown(s)) 
-    {
-        y += 10;
-    } 
-    else if (keyIsDown(w)) 
-    {
-        y -= 10;
-    }
-
-    if (keyIsDown(d)) 
-    {
-        x += 10;
-    } 
-    else if (keyIsDown(a)) 
-    {
-        x -= 10;
-    }
-  
-    // we call the function here.
-    changeDiameter();
-
-}
-
-    // This function updates the size of the circle
-function changeDiameter()
-{
+            y = 50;
+    }*/
+ 
     if (diameter < 200) 
     {
         diameter += 2;
     } 
+ 
     else if (diameter >= 200) 
     {
         diameter = 25;
     }
 
+    // enemies
+    fill (220,208,255);
+    circle(x,y,diameter);
+    fill (215, 232, 253);
+    circle(a,b,diameter1);
+
+    // mouse clicked circle being called under draw
+    circle(dotx, doty, 100); 
+
+    // winner! 
+    winner (20);
+
+    // console.log(mousex); 
+    // console.log(mousey);
 }
 
-function mouseMoved() 
-{  
-    mousex = mouseX;
-    mousey = mouseY;
-    
-}
-
+//define random number
 function getRandomNumber(number)
 {
     return Math.floor(Math.random()*number)+10;
 }
 
-// define ConcentricCircle function
-function ConcentricCircle(x,y, outer_diameter, inner_diameter, outer_red, outer_green,outer_blue, inner_red, inner_green, inner_blue)
+function gates()
 {
-    fill(outer_red,outer_green, outer_blue);
-    circle(x,y,outer_diameter);
-    fill(inner_red, inner_green, inner_blue);
-    circle(x,y,inner_diameter);
+    fill(13, 43, 78);
+    rect(700,300,100,50);
+    rect(700,200,100,50);
+}
+
+function createBoarder (thickness)
+{
+   // top border
+   rect(0,0,width,thickness);
+   // left border
+   rect(0,0,thickness,height);
+   // bottom border
+   rect(0, height-thickness,width, thickness);
+   // right upper border
+   rect(width-thickness,0,thickness,height); 
+}
+
+
+function winner ()
+{
+   if (mousex > 800 && mousey > 250)
+    {
+        fill(0);
+        textSize(25);
+        text("You Win!", width/2-50, height/2-50);
+    }  
+}
+
+function drawEnemies ()
+{
+    // this fill is for the growing black circle
+    fill(0);
+    circle(x, y, diameter);
+
+    // this fill is for the grey circle
+   fill(130);
+   circle(a, b, diameter1); // grey circle that moves back and forth
+}
+
+function moveEnemy ()
+{
+    if (a >= 700 || a <= 100)
+   {
+     movement*=-1;  
+   }
+   a += movement;
+
+  /* if (x >= 300) 
+   {
+       x = 50;
+   }
+
+   if (y >= 300) 
+   {
+           y = 50;
+   }*/
+
+   if (diameter < 200) 
+   {
+       diameter += 2;
+   } 
+
+   else if (diameter >= 200) 
+   {
+       diameter = 25;
+   }
+}
+
+// draws circle when mouse is clicked
+function mouseClicked() // mouse clicked circle
+{
+    fill(200);
+    dotx = mouseX; //call new variable since circle is under draw
+    doty = mouseY;
+    console.log("hi" + mouseY);
+}
+
+// this is my player
+function drawCharacter ()
+{
+    fill(255);
+    circle(mousex, mousey, 30);
+}
+
+// this moves my character around
+function keyPressed() 
+{
+    if (key == 'd') 
+    {
+        mousex += speed;
+    } 
+    else if (key == 'a') 
+    {
+        mousex -= speed;
+    }
+    else if (key == 'w')
+    {
+        mousey -= speed;
+    }
+    else if (key == 's')
+    {
+        mousey += speed;
+    }   
 }
