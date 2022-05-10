@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Contact Me</title>
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/bootstrap-4.3.1/css/bootstrap.min.css">
+        <script src="./styles/bootstrap-4.3.1/js/jquery-3.4.1.min.js"></script>
+        <script src="./styles/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function ValidateForm(){
+               var firstname= document.getElementById("fName").value;
+               if(firstname == ""){
+                  document.getElementById("fName").style.backgroundColor="pink"   
+               }
+               var lastname= document.getElementById("lName").value;
+               if(lastname == ""){
+                document.getElementById("lName").style.backgroundColor="pink" 
+               }
+               var email= document.getElementById("email").value;
+               if(email == ""){
+                   document.getElementById("email").style.backgroundColor="pink"
+               }
+            }
+        </script>
+    </head>
+    <body>
+        <h1> <span class="pinkcolor">Contact Me</span> </h1>
+    </body>
+        <form action="Contact Us.html" type="Post">
+        <span><p>First Name: <input type="text" id="fName" required ><br></p>
+            <p>Last Name: <input type="text" id="lName" required ><br></p>
+            <p>Email: <input type="email" id="email" required ><br></p>
+
+              <h3><p>Accept Terms and Aggreements:</p></h3> 
+              <label>
+                    <p><input type="radio"  name="Terms" value="Yes" required/> Yes </p>
+                    <p><input type="radio"  name="Terms" value="No"required/> No </p>
+              </label>    
+            <input type="submit" value="Submit" onclick="ValidateForm();" />  
+        </span>
+       
+        </form>   
+                         
+</html>
+
